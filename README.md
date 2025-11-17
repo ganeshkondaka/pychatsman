@@ -1,4 +1,4 @@
-# Mini Agent
+# Pychatsman
 
 A simple FastAPI-based AI assistant that helps with Python coding questions using OpenAI's GPT model. It uses few-shot prompting to stay focused on Python topics and roasts users for non-Python queries.
 
@@ -78,7 +78,9 @@ All dependencies are listed in `backend/requirements.txt` and can be installed w
    cd backend
    uvicorn main:app --reload
    ```
-   **Note**: The `--reload` flag enables auto-reloading of the server when code changes are detected, which is useful during development.
+   **Note**: 
+   - `main:app` tells Uvicorn to run the FastAPI app instance named `app` from the `main.py` file.
+   - The `--reload` flag enables auto-reloading of the server when code changes are detected, which is useful during development.
 
 7. **Access the application**:
    - API: http://127.0.0.1:8000
