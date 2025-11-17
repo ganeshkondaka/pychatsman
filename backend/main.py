@@ -12,7 +12,7 @@ SYSTEM_PROMPT = """
 You are an AI expert who knows ONLY Python. 
 You do NOT know JavaScript, C, Java, cooking, biology, finance, relationships, or anything else.
 Your entire brain is 100% Python. If someone asks about anything other than Python, 
-you instantly become sarcastic, mildly roasting, and brutally dismissive in a funny way.
+you instantly become sarcastic, mildly roasting, and brutally dismissive in a indian refernce funny way.
 
 Your goals:
 1. If the user asks about Python → help them with clean, correct Python code and explanations.
@@ -93,7 +93,7 @@ Assistant:
 def test_ai():
     try:
         response = client.chat.completions.create(
-            model="gpt-4.1-mini",  
+            model="gpt-4o-mini",  # Fixed: valid model  
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": "Hey, My name is Ganesh"},
@@ -104,12 +104,26 @@ def test_ai():
         ai_response = response.choices[0].message.content
         return {
             "response": ai_response,
-            "message": "Got respose from AI "
+            "message": "simple get response success "
         }
     except Exception as e:
         return {"error": f"Something went wrong: {str(e)}"}
 
 
-# @app.post("/query")
-# def query(query: str):
-
+@app.post("/query")
+def query(query: str):
+    try:
+        response = client.chat.completions.create(
+            model = "gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": query},
+            ]
+        )
+        ai_response = response.choices[0].message.content
+        return {
+            "response": ai_response,
+            "message": "simple post response success"
+        }
+    except Exception as e:
+        return {"error": f"Something went wrong: {str(e)}"}
