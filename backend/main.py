@@ -1,10 +1,24 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from openai import OpenAI
+from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 client = OpenAI()
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Vite dev server port
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class QueryRequest(BaseModel):
+    text: str
+    selectedOption: str
 
 # Few-shot Prompting: The model is provided with a few examples before asking it to generate a response.
 
@@ -111,19 +125,23 @@ def test_ai():
 
 
 @app.post("/query")
-def query(query: str):
+def query(data: dict):
+    print('data is', data)
+    query_text = data.get('text', '')
+    selected = data.get('selectedOption', '')
     try:
         response = client.chat.completions.create(
             model = "gpt-4o-mini",
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": query},
+                {"role": "user", "content": query_text},
             ]
         )
         ai_response = response.choices[0].message.content
         return {
             "response": ai_response,
-            "message": "simple post response success"
+            "message": "simple post response success",
+            "selectedOption": selected
         }
     except Exception as e:
         return {"error": f"Something went wrong: {str(e)}"}
