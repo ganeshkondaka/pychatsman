@@ -1,155 +1,201 @@
-# Pychatsman
+# Python AI Assistant 🤖
 
-A simple FastAPI-based AI assistant that helps with Python coding questions using OpenAI's GPT model. It uses few-shot prompting to stay focused on Python topics and roasts users for non-Python queries.
+Hey there! This is a cool AI chatbot I built that only knows Python. Seriously, ask it about anything else and it'll roast you hard with some Indian-style sarcasm. Built with FastAPI and React.
 
-## 1. About This Code
+## What's this all about?
 
-This is a simple FastAPI application that integrates with OpenAI's API to provide AI assistance for Python coding questions. It uses few-shot prompting to guide the AI's responses and includes basic error handling.
+So I made this AI that acts like your personal Python buddy. Unlike those generic AI chatbots that try to know everything, this one is laser-focused on Python only. Ask it about loops, functions, debugging, whatever - it'll help you out. But ask about cooking biryani or relationships? Oh boy, prepare for some hilarious roasting!
 
-Key features:
-- In-memory API integration (no persistent storage)
-- RESTful endpoint for AI queries
-- Automatic error handling for API issues
+The personality is inspired by that sarcastic Indian uncle who only cares about one thing. Makes learning Python way more fun and memorable.
 
-## 2. About FastAPI
+## Project Layout
 
-FastAPI is a modern, fast (high-performance) web framework for building APIs with Python 3.7+ based on standard Python type hints. It is built on top of Starlette for the web parts and Pydantic for the data parts.
+```
+mini_agent/
+├── backend/               
+│   ├── main.py               
+│   ├── requirements.txt  
+│   ├── .env                   
+│   └── venv/             
+├── frontend/              
+│   ├── src/
+│   │   ├── components/        
+│   │   │   ├── Homebody.jsx   
+│   │   │   ├── Navbar.jsx     
+│   │   │   ├── Sidebar.jsx    
+│   │   │   └── Footer.jsx   
+│   │   ├── pages/
+│   │   │   └── Home.jsx
+│   │   ├── App.jsx       
+│   │   └── main.jsx      
+│   ├── package.json           
+│   └── vite.config.js    
+└── README.md                 
+```
 
-Key benefits:
-- Fast: Very high performance, on par with NodeJS and Go
-- Fast to code: Increase development speed by 200-300%
-- Fewer bugs: Reduce human-induced errors by 40%
-- Intuitive: Great editor support with auto-completion
-- Easy: Designed to be easy to use and learn
-- Short: Minimize code duplication
-- Robust: Get production-ready code with automatic interactive documentation
+## Tech Stack
 
-## 3. About Dependencies
+### Backend
+- **FastAPI** - Super fast Python web framework
+- **OpenAI GPT-4** - The brain behind the Python expertise
+- **Pydantic** - For data validation
+- **CORS** - So frontend can talk to backend
 
-This project uses the following main dependencies:
+### Frontend
+- **React 19** - UI library with all the hooks
+- **Vite** - Crazy fast dev server
+- **Tailwind CSS** - For styling without the headache
+- **Axios** - For making API calls
+- **React Icons** - Cool icons
 
-- **FastAPI**: The web framework for building the API
-- **Uvicorn**: ASGI server for running the FastAPI application
-- **OpenAI**: Client for interacting with OpenAI's API
-- **python-dotenv**: For loading environment variables from a .env file
+## Cool Features
 
-All dependencies are listed in `backend/requirements.txt` and can be installed with `pip install -r backend/requirements.txt`.
+- **Python-Only AI**: Won't answer anything else, promise
+- **Sarcastic Roasts**: Hilarious responses for non-Python questions
+- **Dark Theme**: Looks sleek and modern
+- **Real-time Chat**: Instant responses
 
-## 4. Setup and Run Locally
+## Getting Started Locally
 
-### Prerequisites
-- Python 3.8 or higher
-- pip (Python package installer)
-- OpenAI API key
+### What you need first
 
-### Installation Steps
+- Python 3.8 or newer
+- Node.js 16+
+- OpenAI API key (get one from OpenAI)
 
-1. **Clone or navigate to the project directory**:
+### Setting up the backend
+
+1. **Go to backend folder:**
+   ```bash
+   cd backend
    ```
-   cd mini_agent
-   ```
 
-2. **Create a virtual environment**:
-   ```
+2. **Create a virtual environment:**
+   ```bash
    python -m venv venv
    ```
 
-3. **Activate the virtual environment**:
-   - Windows: `venv\Scripts\activate`
-   - macOS/Linux: `source venv/bin/activate`
-
-4. **Install dependencies**:
-   ```
-   pip install -r backend/requirements.txt
-   ```
-   Alternatively, if starting fresh:
-   ```
-   pip install fastapi uvicorn openai python-dotenv
+3. **Activate it:**
+   ```bash
+   # On Windows
+   venv\Scripts\activate
+   
+   # On Mac/Linux
+   source venv/bin/activate
    ```
 
-5. **(Optional) Generate requirements.txt** (if not present or to update with current packages):
+4. **Install the packages:**
+   ```bash
+   pip install -r requirements.txt
    ```
-   pip freeze > backend/requirements.txt
-   ```
-   This command captures all installed packages and their versions in the virtual environment.
 
-6. **Run the application**:
+5. **Add your API key:**
+   Create a `.env` file in the backend folder:
    ```
-   cd backend
+   OPENAI_API_KEY=your_key_here
+   ```
+
+6. **Run the server:**
+   ```bash
    uvicorn main:app --reload
    ```
-   **Note**: 
-   - `main:app` tells Uvicorn to run the FastAPI app instance named `app` from the `main.py` file.
-   - The `--reload` flag enables auto-reloading of the server when code changes are detected, which is useful during development.
+   Backend runs on `http://127.0.0.1:8000`
 
-7. **Access the application**:
-   - API: http://127.0.0.1:8000
-   - Interactive API documentation: http://127.0.0.1:8000/docs
+### Setting up the frontend
 
-## 5. Setup
-
-1. **Get an OpenAI API key**: Sign up at [OpenAI](https://platform.openai.com/) and get your API key.
-
-2. **Create a `.env` file** in the `backend/` folder:
-   ```
-   OPENAI_API_KEY=your_api_key_here
+1. **Go to frontend folder:**
+   ```bash
+   cd frontend
    ```
 
-   **Security note**: Never commit `.env` to version control. Add it to `.gitignore`.
+2. **Install packages:**
+   ```bash
+   npm install
+   ```
 
-## 6. About Routes and Inputs
+3. **Start dev server:**
+   ```bash
+   npm run dev
+   ```
+   Frontend runs on `http://localhost:5173`
 
-The application provides the following REST API endpoint:
+## How to Use
 
-### GET /test_ai
-- **Description**: Test endpoint that calls OpenAI's API with a predefined conversation
-- **Method**: GET
-- **URL**: /test_ai
-- **Input**: None (uses hardcoded messages)
-- **Response**: JSON object with AI response or error
-  ```json
-  {
-    "response": "AI's answer here",
-    "message": "Got response from AI"
-  }
-  ```
-  or
-  ```json
-  {
-    "error": "Something went wrong: error details"
-  }
-  ```
+1. Start both servers (backend + frontend)
+2. Open `http://localhost:5173` in your browser
+3. Pick a model from the dropdown
+4. Type your Python question
+5. Hit Enter or submit
+6. Enjoy the response!
 
-### Example Usage with curl
+### Example Conversations
 
-```bash
-# Test the AI endpoint
-curl -X GET "http://127.0.0.1:8000/test_ai"
+**Python Question:**
+```
+You: How do I make a list comprehension?
+AI: Here's the magic:
+
+[x**2 for x in range(10)]
 ```
 
-## 7. About Virtual Environments
+**Non-Python Question:**
+```
+You: How do I make coffee?
+AI: Coffee? Bro, I only know Python. Go ask your coffee machine about syntax errors.
+```
 
-A virtual environment in Python is an isolated environment that allows you to manage dependencies for different projects separately. It creates a folder containing a copy of the Python interpreter and libraries, ensuring that packages installed in one project don't interfere with others.
+## API Stuff
 
-### Uses of Virtual Environments
-- **Dependency Isolation**: Keep project-specific packages separate from system-wide installations.
-- **Version Management**: Use different versions of packages for different projects without conflicts.
-- **Reproducibility**: Ensure consistent environments across development, testing, and production.
-- **Clean Uninstall**: Easily remove all project dependencies by deleting the venv folder.
+### POST `/query`
+Send a message to the AI.
 
-### How to Create a Virtual Environment
-1. Open your terminal/command prompt.
-2. Navigate to your project directory.
-3. Run: `python -m venv venv`
-4. Activate it:
-   - Windows: `venv\Scripts\activate`
-   - macOS/Linux: `source venv/bin/activate`
-5. Install packages: `pip install package_name`
-6. Deactivate when done: `deactivate`
+**Send:**
+```json
+{
+  "text": "How do I write a for loop?",
+  "selectedOption": "pychatsman"
+}
+```
 
-## Notes
+**Get back:**
+```json
+{
+  "response": "for i in range(5):\n    print(i)",
+  "message": "success",
+  "selectedOption": "pychatsman"
+}
+```
 
-- This is a beginner-friendly example. For production, add authentication, rate limiting, and better error handling.
-- Costs: OpenAI charges per token—monitor usage on your OpenAI dashboard.
-- Data is not stored; each request is independent.
-- If you get errors, check your API key, internet connection, and OpenAI account limits.</content>
+### GET `/test_ai`
+Test endpoint for the AI.
+
+## Customization
+
+### Change the AI personality
+Edit the `SYSTEM_PROMPT` in `backend/main.py` to make it act differently.
+
+### Style it up
+Uses Tailwind CSS. Change classes in the React components to customize the look.
+
+### Add more models
+Add options to the `options` array in `Homebody.jsx` and update backend logic.
+
+## Contributing
+
+Feel free to contribute! Just:
+1. Fork it
+2. Make your changes
+3. Submit a PR
+
+## License
+
+MIT License - do whatever you want with it.
+
+## Thanks to
+
+- OpenAI for GPT-4
+- FastAPI team
+- React/Vite folks
+- Tailwind CSS
+
+---
