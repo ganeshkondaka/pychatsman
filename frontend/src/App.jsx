@@ -9,8 +9,8 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='flex bg-zinc-900 text-white w-screen h-screen'>
-      <div className='w-full h-full mx-32 py-5'>
+    <div className='flex bg-zinc-900 text-white w-screen h-screen overflow-y-scroll'>
+      <div className='w-full h-full mx-32 py-5 flex flex-col'>
         <Home />
       </div>
     </div>
