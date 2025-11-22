@@ -44,16 +44,10 @@ mini_agent/
 ### Frontend
 - **React 19** - UI library with all the hooks
 - **Vite** - Crazy fast dev server
-- **Tailwind CSS** - For styling without the headache
+- **Tailwind CSS** - For styling 
 - **Axios** - For making API calls
 - **React Icons** - Cool icons
 
-## Cool Features
-
-- **Python-Only AI**: Won't answer anything else, promise
-- **Sarcastic Roasts**: Hilarious responses for non-Python questions
-- **Dark Theme**: Looks sleek and modern
-- **Real-time Chat**: Instant responses
 
 ## Getting Started Locally
 
@@ -119,83 +113,4 @@ mini_agent/
    ```
    Frontend runs on `http://localhost:5173`
 
-## How to Use
 
-1. Start both servers (backend + frontend)
-2. Open `http://localhost:5173` in your browser
-3. Pick a model from the dropdown
-4. Type your Python question
-5. Hit Enter or submit
-6. Enjoy the response!
-
-### Example Conversations
-
-**Python Question:**
-```
-You: How do I make a list comprehension?
-AI: Here's the magic:
-
-[x**2 for x in range(10)]
-```
-
-**Non-Python Question:**
-```
-You: How do I make coffee?
-AI: Coffee? Bro, I only know Python. Go ask your coffee machine about syntax errors.
-```
-
-## API Stuff
-
-### POST `/query`
-Send a message to the AI.
-
-**Send:**
-```json
-{
-  "text": "How do I write a for loop?",
-  "selectedOption": "pychatsman"
-}
-```
-
-**Get back:**
-```json
-{
-  "response": "for i in range(5):\n    print(i)",
-  "message": "success",
-  "selectedOption": "pychatsman"
-}
-```
-
-### GET `/test_ai`
-Test endpoint for the AI.
-
-## Customization
-
-### Change the AI personality
-Edit the `SYSTEM_PROMPT` in `backend/main.py` to make it act differently.
-
-### Style it up
-Uses Tailwind CSS. Change classes in the React components to customize the look.
-
-### Add more models
-Add options to the `options` array in `Homebody.jsx` and update backend logic.
-
-## Contributing
-
-Feel free to contribute! Just:
-1. Fork it
-2. Make your changes
-3. Submit a PR
-
-## License
-
-MIT License - do whatever you want with it.
-
-## Thanks to
-
-- OpenAI for GPT-4
-- FastAPI team
-- React/Vite folks
-- Tailwind CSS
-
----
