@@ -6,7 +6,7 @@ export const Navbar = () => {
   return (
     <div className='flex justify-between w-full sticky top-0 '>
       <div>
-        <h1 className='text-3xl font-bold font-mono'>PychatsMan</h1>
+        <h1 className='text-3xl font-bold font-mono'>Pychatbot</h1>
       </div>
       <button onClick={changeTheme}>
         <WiMoonAltFirstQuarter className='text-2xl'/>

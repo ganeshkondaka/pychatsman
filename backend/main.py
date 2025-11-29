@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from system_prompts import prompt_list
 
 load_dotenv()
 client = OpenAI()
@@ -129,11 +130,12 @@ def query(data: dict):
     print('data is', data)
     query_text = data.get('text', '')
     selected = data.get('selectedOption', '')
+    system_prompt = next((item['system_prompt'] for item in prompt_list if item['name'] == selected), SYSTEM_PROMPT)
     try:
         response = client.chat.completions.create(
             model = "gpt-4o-mini",
             messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": query_text},
             ]
         )

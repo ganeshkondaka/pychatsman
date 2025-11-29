@@ -7,9 +7,9 @@ export const Homebody = () => {
   const [conversations, setConversations] = useState([]);
   const textareaRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("pychatsman");
+  const [selectedOption, setSelectedOption] = useState("pychatbot");
   const [loading, setLoading] = useState(false);
-  const options = ["pychatsman", "coolie"];
+  const options = ["pychatbot", "refiner", "variants"];
   const messagesEndRef = useRef(null);
 
   const handleInputChange = (e) => {
@@ -116,7 +116,9 @@ export const Homebody = () => {
             {conversations.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} transition-all duration-300 ease-in-out`}>
                 <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${msg.role === 'user' ? 'bg-zinc-800 text-white' : 'border border-zinc-800 text-gray-100'} transition-all duration-300 ease-in-out hover:scale-105`}>
-                  {msg.role === 'user' ? <p className='text-xs text-blue-200 mb-1'>Me</p> : <p className='text-xs text-gray-400 mb-1'>AI</p>}
+                  {msg.role === 'user'
+                    ? <p className='text-xs text-blue-200 mb-1 flex gap-1 items-center'>Me<span className='text-[7px] bg-zinc-600 rounded-2xl px-1 text-zinc-300'>{msg.model}</span></p>
+                    : <p className='text-xs text-gray-400 mb-1'>AI<span className='text-[9px] bg-zinc-600 rounded-2xl'>{msg.model}</span></p>}
                   <p className='overflow-wrap'>{msg.content}</p>
                 </div>
               </div>
