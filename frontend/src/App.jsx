@@ -1,15 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { Home } from './pages/Home'
-import Sidebar from './components/Sidebar'
-
+import { Store } from './hooks/useStore'
 function App() {
-  const [count, setCount] = useState(0)
-
+  const { theme } = Store()
   return (
-    <div className='flex bg-zinc-900 text-white w-screen h-screen overflow-y-scroll'>
+    <div className={`flex ${theme === "dark" ? `bg-zinc-900 text-white` : `bg-white text-black`} w-screen h-screen overflow-y-scroll`}>
       <div className='w-full h-full mx-32 py-5 flex flex-col'>
         <Home />
       </div>
